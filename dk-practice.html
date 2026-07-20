@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>English Practice · Level 2 Beginner — Units 1–5</title>
+<style>
+  :root{
+    --bg:#fdf6ec; --card:#ffffff; --ink:#26221d; --muted:#6f6a62;
+    --orange:#ef7d00; --orange-d:#c96500; --orange-bg:#fff3e2;
+    --blue:#2a9fc4; --blue-bg:#e6f5fa;
+    --green:#4aa96c; --purple:#8a6cb5; --red:#d9534f;
+    --good:#1a8a5a; --good-bg:#e5f6ee; --bad:#c0392b; --bad-bg:#fdecea;
+    --line:#ecdfc9; --line2:#e3e8f0;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.5;}
+  .wrap{max-width:920px;margin:0 auto;padding:20px 16px 90px;}
+  a{color:var(--orange-d);}
+  header.top{background:var(--orange);color:#fff;border-radius:16px;padding:24px 24px;
+    box-shadow:0 8px 22px rgba(239,125,0,.25);}
+  header.top .bk{font-size:12px;letter-spacing:2px;font-weight:700;opacity:.9;}
+  header.top h1{margin:6px 0 6px;font-size:26px;}
+  header.top p{margin:0;opacity:.96;font-size:14.5px;max-width:640px;}
+  .home{display:inline-block;margin-bottom:12px;color:var(--orange-d);font-weight:600;font-size:14px;text-decoration:none;}
+  .nav{position:sticky;top:0;z-index:20;background:var(--bg);padding:10px 0;margin:6px 0 4px;
+    border-bottom:1px solid var(--line);display:flex;gap:6px;flex-wrap:wrap;}
+  .nav a{background:var(--orange-bg);color:var(--orange-d);border:1px solid var(--line);
+    padding:6px 11px;border-radius:999px;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap;}
+  .nav a:hover{background:var(--orange);color:#fff;}
+  .note{background:var(--orange-bg);border-left:4px solid var(--orange);padding:12px 15px;border-radius:10px;
+    font-size:14px;margin:18px 0;}
+  .unit{margin:34px 0 0;}
+  .unit-head{display:flex;align-items:center;gap:14px;margin:0 0 4px;}
+  .unit-head .num{background:var(--orange);color:#fff;font-weight:800;font-size:20px;
+    width:52px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .unit-head h2{margin:0;font-size:24px;font-weight:800;}
+  .unit-blurb{color:var(--muted);font-size:14px;margin:8px 0 4px;max-width:660px;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 6px;}
+  .tag{font-size:12.5px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:5px 10px;}
+  .tag b{color:var(--orange-d);}
+  .ex{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:16px 0;
+    box-shadow:0 2px 6px rgba(120,90,20,.05);}
+  .ex-head{display:flex;align-items:flex-start;gap:10px;margin:0 0 12px;}
+  .badge{width:30px;height:30px;border-radius:8px;flex:none;display:flex;align-items:center;justify-content:center;
+    font-size:15px;font-weight:800;color:#fff;}
+  .badge.grammar{background:var(--orange);}
+  .badge.vocab{background:var(--blue);font-size:13px;}
+  .badge.reading{background:var(--green);}
+  .badge.speaking{background:var(--blue);}
+  .badge.listening{background:var(--purple);}
+  .ex-head .ttl{font-size:14px;font-weight:700;letter-spacing:.2px;padding-top:5px;}
+  .ex-head .ttl .code{color:var(--orange-d);font-weight:800;margin-right:6px;}
+  .adapt{display:inline-block;background:var(--blue-bg);color:#1c6f88;border:1px solid #bfe3ee;
+    font-size:11px;font-weight:700;border-radius:6px;padding:2px 7px;margin-left:8px;vertical-align:middle;}
+  .sample{background:#f7f2ea;border:1px dashed var(--line);border-radius:9px;padding:9px 12px;margin:0 0 12px;font-size:14px;}
+  .sample .lab{color:var(--muted);font-size:11.5px;font-weight:700;letter-spacing:1px;display:block;margin-bottom:2px;}
+  .sample b{color:var(--good);}
+  .row{padding:8px 0;border-bottom:1px solid #f2eadb;font-size:14.5px;}
+  .item{display:flex;gap:10px;align-items:baseline;padding:7px 0;font-size:14.5px;border-bottom:1px solid #f4ecdd;}
+  .item:last-child{border-bottom:none;}
+  .item .qn{color:var(--muted);font-weight:700;min-width:22px;flex:none;font-size:13px;}
+  .item .body{flex:1;}
+  input.gap{border:1px solid var(--line2);border-radius:7px;padding:5px 8px;font-size:14px;min-width:90px;
+    font-family:inherit;}
+  input.gap.wide{min-width:230px;width:60%;}
+  input.gap.ok{border-color:var(--good);background:var(--good-bg);}
+  input.gap.no{border-color:var(--bad);background:var(--bad-bg);}
+  .hint{color:var(--muted);font-size:12.5px;margin-left:4px;}
+  .cue{color:var(--orange-d);font-weight:700;}
+  .opts{display:inline-flex;gap:6px;margin:0 4px;}
+  .opt-btn{border:1px solid var(--line2);background:#fff;border-radius:7px;padding:4px 12px;cursor:pointer;
+    font-size:14px;font-family:inherit;font-weight:600;color:var(--ink);}
+  .opt-btn:hover{border-color:var(--orange);}
+  .opt-btn.sel{background:var(--orange);border-color:var(--orange);color:#fff;}
+  .opt-btn.ok{background:var(--good-bg);border-color:var(--good);color:var(--good);}
+  .opt-btn.no{background:var(--bad-bg);border-color:var(--bad);color:var(--bad);text-decoration:line-through;}
+  select.pick{border:1px solid var(--line2);border-radius:7px;padding:5px 8px;font-size:14px;font-family:inherit;background:#fff;}
+  select.pick.ok{border-color:var(--good);background:var(--good-bg);}
+  select.pick.no{border-color:var(--bad);background:var(--bad-bg);}
+  .bank{background:#f7f2ea;border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin:0 0 12px;
+    font-size:14px;display:flex;flex-wrap:wrap;gap:6px 14px;}
+  .bank b{color:var(--orange-d);}
+  .bank .word{background:#fff;border:1px solid var(--line);border-radius:6px;padding:2px 9px;font-weight:600;}
+  .reading{background:#f7fbf4;border:1px solid #dcecd2;border-radius:10px;padding:14px 16px;margin:0 0 14px;font-size:14.5px;}
+  .reading h4{margin:0 0 8px;color:var(--green);font-size:15px;}
+  .tf label{margin-right:14px;font-size:13.5px;cursor:pointer;}
+  .tf input{margin-right:4px;}
+  .tf .fb{font-size:13px;margin-left:6px;font-weight:700;}
+  .forms{width:100%;border-collapse:collapse;font-size:14px;}
+  .forms th{background:var(--orange-bg);color:var(--orange-d);text-align:left;padding:7px 8px;border:1px solid var(--line);font-size:13px;}
+  .forms td{border:1px solid var(--line);padding:7px 8px;vertical-align:middle;}
+  .forms td.given{background:#faf5ed;color:var(--muted);font-style:italic;}
+  .forms input.gap{width:100%;min-width:120px;}
+  .cats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px;}
+  @media(max-width:560px){.cats{grid-template-columns:1fr;} .forms,.forms tbody,.forms tr,.forms td{display:block;width:100%;} .forms th{display:none;} .forms td{border:none;border-bottom:1px solid var(--line);} }
+  .catbox{border:1px solid var(--line);border-radius:10px;padding:10px 12px;}
+  .catbox h5{margin:0 0 6px;font-size:13px;letter-spacing:1px;text-transform:uppercase;}
+  .catbox.action h5{color:var(--purple);} .catbox.state h5{color:var(--green);}
+  .catword{display:inline-flex;align-items:center;gap:6px;margin:4px 6px 0 0;}
+  .catword .w{font-weight:600;}
+  .catword select{font-size:12.5px;padding:3px 5px;border-radius:6px;border:1px solid var(--line2);}
+  .scene{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #f4ecdd;}
+  .scene:last-child{border-bottom:none;}
+  .scene .pic{font-size:30px;width:48px;text-align:center;flex:none;}
+  .btn{background:var(--orange);color:#fff;border:none;border-radius:9px;padding:9px 18px;font-size:14px;font-weight:700;cursor:pointer;}
+  .btn:hover{background:var(--orange-d);}
+  .btn.ghost{background:#f2eadb;color:var(--orange-d);}
+  .actions{display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap;}
+  .score{font-weight:800;font-size:14.5px;}
+  .score.good{color:var(--good);} .score.mid{color:var(--orange-d);}
+  details.key{margin-top:10px;}
+  details.key summary{cursor:pointer;color:var(--orange-d);font-weight:700;font-size:13px;}
+  details.key .k{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.7;}
+  .order-tiles{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0;}
+  .tile{background:#fff;border:1px solid var(--line2);border-radius:7px;padding:4px 10px;font-size:14px;cursor:pointer;user-select:none;}
+  .tile:hover{border-color:var(--orange);}
+  .tile.used{opacity:.35;pointer-events:none;}
+  .order-line{min-height:38px;border:1px dashed var(--line2);border-radius:8px;padding:6px 8px;margin:4px 0;
+    display:flex;flex-wrap:wrap;gap:6px;background:#faf7f1;}
+  .order-line .tile{background:var(--orange-bg);border-color:var(--line);}
+  .order-line.ok{border-color:var(--good);background:var(--good-bg);}
+  .order-line.no{border-color:var(--bad);background:var(--bad-bg);}
+  .speak .item{align-items:flex-start;}
+  .model{display:none;margin-top:5px;background:var(--blue-bg);border-radius:7px;padding:6px 9px;font-size:13.5px;color:#1c6f88;}
+  .model.show{display:block;}
+  .audio-wrap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:16px 0;}
+  audio{width:100%;margin:8px 0;}
+  footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:40px;border-top:1px solid var(--line);padding-top:18px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="home" href="index.html">← All lessons</a>
+  <header class="top">
+    <div class="bk">ENGLISH · LEVEL 2 · BEGINNER</div>
+    <h1>Interactive Practice — Units 1–5</h1>
+    <p>Grammar drills for <i>“to be”</i>, the present simple, the present continuous, and action vs. state verbs. Type or tap your answers, press <b>Check</b>, and turn the key when you get stuck. Nothing is saved — redo it any time.</p>
+  </header>
+
+  <nav class="nav">
+    <a href="#u1">01 · To be</a>
+    <a href="#u2">02 · Routines</a>
+    <a href="#u3">03 · Wearing now</a>
+    <a href="#u4">04 · Questions</a>
+    <a href="#u5">05 · Verb types</a>
+    <a href="#listen">🎧 Listening</a>
+  </nav>
+
+  <div class="note">
+    <b>How to use / Как заниматься:</b> Work through each unit top to bottom. Type in the boxes or tap the option buttons, then press <b>Check</b>. Small spelling slips and contractions (<i>isn’t</i> = <i>is not</i>) are accepted. The green sample at the top of each exercise is the answer to question 0.
+  </div>
+
+  <div id="units"></div>
+
+  <!-- LISTENING (real audio) -->
+  <section class="unit" id="listen">
+    <div class="unit-head"><span class="num" style="background:var(--purple)">🎧</span><h2>Listening — Street interview</h2></div>
+    <p class="unit-blurb">A short BBC-style street interview (A2). Play the audio as many times as you like, then answer. <span class="adapt">real audio</span></p>
+    <div id="listening-root">
+      <div class="audio-wrap">
+        <audio controls preload="metadata" src="audio/street-interview.mp3"></audio>
+        <p class="hint" style="margin:4px 0 0">Transcript-based questions are being finalized.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Interactive self-study drills rebuilt from <i>English for Everyone — Practice Book, Level 2 (Beginner)</i>, Units 1–5.
+    For personal study only · nothing is saved. · <a href="index.html">Lesson index</a>
+  </footer>
+</div>
+
+<script>
+/* ============ helpers ============ */
+function norm(s){
+  s=' '+(s||'').toLowerCase().trim()+' ';
+  s=s.replace(/isn't/g,'is not').replace(/aren't/g,'are not')
+     .replace(/doesn't/g,'does not').replace(/don't/g,'do not')
+     .replace(/i'm/g,'i am').replace(/won't/g,'will not').replace(/can't/g,'cannot');
+  s=s.replace(/(\w)'re/g,'$1 are').replace(/(\w)'s/g,'$1 is');
+  s=s.replace(/[.,!?;:"]/g,' ').replace(/\s+/g,' ').trim();
+  return s;
+}
+function eqAny(val,answers){return answers.some(a=>norm(a)===norm(val));}
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function el(tag,cls,html){const e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+function setScore(node,got,total){
+  node.textContent=`Score: ${got} / ${total}`+(got===total?' 🎉':'');
+  node.className='score '+(got===total?'good':(got>=Math.ceil(total*0.6)?'mid':''));
+}
+
+/* ============ builders (return {node, check}) ============ */
+function buildChoice(ex){
+  const wrap=el('div','choice');
+  ex.items.forEach((it,i)=>{
+    const row=el('div','item');
+    let opts=`<span class="opts" data-c="${it.correct}">`;
+    it.options.forEach((o,j)=>{opts+=`<button class="opt-btn" data-j="${j}">${esc(o)}</button>`;});
+    opts+=`</span>`;
+    row.innerHTML=`<span class="qn">${i+1}</span><span class="body">${esc(it.before||'')} ${opts} ${esc(it.after||'')}</span>`;
+    row.querySelectorAll('.opt-btn').forEach(b=>b.onclick=()=>{
+      b.parentNode.querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('sel'));
+      b.classList.add('sel');
+    });
+    wrap.appendChild(row);
+  });
+  return {node:wrap, check(){let g=0;wrap.querySelectorAll('.opts').forEach(o=>{
+    const c=+o.dataset.c, sel=o.querySelector('.opt-btn.sel');
+    o.querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('ok','no'));
+    o.querySelectorAll('.opt-btn')[c].classList.add('ok');
+    if(sel){const j=+sel.dataset.j; if(j===c)g++; else sel.classList.add('no');}
+  });return {got:g,total:ex.items.length};}};
+}
+
+function buildGap(ex){
+  const wrap=el('div','gap-ex');
+  if(ex.bank){const b=el('div','bank','<b>Word bank:</b> '+ex.bank.map(w=>`<span class="word">${esc(w)}</span>`).join(''));wrap.appendChild(b);}
+  ex.items.forEach((it,i)=>{
+    const row=el('div','item');
+    const cue=it.cue?` <span class="cue">(${esc(it.cue)})</span>`:'';
+    const hint=it.hint?` <span class="hint">${esc(it.hint)}</span>`:'';
+    row.innerHTML=`<span class="qn">${i+1}</span><span class="body">${esc(it.before||'')} `+
+      `<input class="gap${ex.wide?' wide':''}" autocomplete="off" data-i="${i}">`+
+      ` ${esc(it.after||'')}${cue}${hint}</span>`;
+    wrap.appendChild(row);
+  });
+  return {node:wrap, check(){let g=0;ex.items.forEach((it,i)=>{
+    const inp=wrap.querySelector(`input[data-i="${i}"]`);const ok=eqAny(inp.value,it.answers);
+    inp.classList.toggle('ok',ok);inp.classList.toggle('no',!ok);if(ok)g++;
+  });return {got:g,total:ex.items.length};}};
+}
+
+function buildMatch(ex){
+  const wrap=el('div','match');
+  ex.pairs.forEach((p,i)=>{
+    const row=el('div','item');
+    let sel=`<select class="pick" data-i="${i}"><option value="">— choose —</option>`;
+    ex.right.forEach((r,j)=>{sel+=`<option value="${j}">${esc(r)}</option>`;});
+    sel+=`</select>`;
+    row.innerHTML=`<span class="qn">${i+1}</span><span class="body"><b>${esc(p.left)}</b><br>${sel}</span>`;
+    wrap.appendChild(row);
+  });
+  return {node:wrap, check(){let g=0;ex.pairs.forEach((p,i)=>{
+    const s=wrap.querySelector(`select[data-i="${i}"]`);const ok=(+s.value===p.correct);
+    s.classList.toggle('ok',ok);s.classList.toggle('no',!ok);if(ok)g++;
+  });return {got:g,total:ex.pairs.length};}};
+}
+
+function buildTF(ex){
+  const wrap=el('div','tf');
+  wrap.appendChild(el('div','reading',`<h4>${esc(ex.title)}</h4>${ex.text}`));
+  ex.items.forEach((it,i)=>{
+    const row=el('div','item');
+    let r='';['True','False','Not given'].forEach(v=>{
+      r+=`<label><input type="radio" name="tf${ex.id}_${i}" value="${v}">${v}</label>`;});
+    row.innerHTML=`<span class="qn">${i+1}</span><span class="body">${esc(it.stmt)}<br>${r}<span class="fb" data-i="${i}"></span></span>`;
+    wrap.appendChild(row);
+  });
+  return {node:wrap, check(){let g=0;ex.items.forEach((it,i)=>{
+    const sel=wrap.querySelector(`input[name="tf${ex.id}_${i}"]:checked`);const fb=wrap.querySelector(`.fb[data-i="${i}"]`);
+    if(sel&&sel.value===it.ans){g++;fb.textContent=' ✓';fb.style.color='var(--good)';}
+    else{fb.textContent=' ✗ → '+it.ans;fb.style.color='var(--bad)';}
+  });return {got:g,total:ex.items.length};}};
+}
+
+function buildForms(ex){
+  const wrap=el('div');
+  const t=el('table','forms');
+  let head='<tr>'+ex.cols.map(c=>`<th>${esc(c)}</th>`).join('')+'</tr>';
+  let body='';
+  ex.rows.forEach((r,i)=>{
+    body+='<tr>';
+    r.vals.forEach((v,j)=>{
+      if(j===r.given) body+=`<td class="given">${esc(v.display||v)}</td>`;
+      else body+=`<td><input class="gap" autocomplete="off" data-i="${i}" data-j="${j}"></td>`;
+    });
+    body+='</tr>';
+  });
+  t.innerHTML=head+body;wrap.appendChild(t);
+  return {node:wrap, check(){let g=0,tot=0;ex.rows.forEach((r,i)=>{
+    r.vals.forEach((v,j)=>{if(j===r.given)return;tot++;
+      const inp=wrap.querySelector(`input[data-i="${i}"][data-j="${j}"]`);
+      const ans=(v.accept||[v.display||v]);const ok=eqAny(inp.value,ans);
+      inp.classList.toggle('ok',ok);inp.classList.toggle('no',!ok);if(ok)g++;});
+  });return {got:g,total:tot};}};
+}
+
+function buildCategory(ex){
+  const wrap=el('div');
+  wrap.appendChild(el('div','bank','<b>Sort each word:</b> '+ex.sample));
+  const box=el('div','',ex.words.map((w,i)=>
+    `<span class="catword"><span class="w">${esc(w.w)}</span>`+
+    `<select class="pick" data-i="${i}"><option value="">?</option>`+
+    ex.groups.map(g=>`<option value="${g}">${g}</option>`).join('')+`</select></span>`).join(''));
+  wrap.appendChild(box);
+  return {node:wrap, check(){let g=0;ex.words.forEach((w,i)=>{
+    const s=wrap.querySelector(`select[data-i="${i}"]`);const ok=(s.value===w.group);
+    s.classList.toggle('ok',ok);s.classList.toggle('no',!ok);if(ok)g++;
+  });return {got:g,total:ex.words.length};}};
+}
+
+function buildScene(ex){ // choose the correct sentence for a described scene
+  const wrap=el('div','scene-ex');
+  ex.items.forEach((it,i)=>{
+    const row=el('div','scene');
+    let opts=`<span class="opts" data-c="${it.correct}">`;
+    it.options.forEach((o,j)=>{opts+=`<button class="opt-btn" data-j="${j}">${esc(o)}</button>`;});
+    opts+=`</span>`;
+    row.innerHTML=`<span class="pic">${it.pic}</span><span class="body">${opts}</span>`;
+    row.querySelectorAll('.opt-btn').forEach(b=>b.onclick=()=>{
+      b.parentNode.querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');});
+    wrap.appendChild(row);
+  });
+  return {node:wrap, check(){let g=0;wrap.querySelectorAll('.opts').forEach(o=>{
+    const c=+o.dataset.c,sel=o.querySelector('.opt-btn.sel');
+    o.querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('ok','no'));
+    o.querySelectorAll('.opt-btn')[c].classList.add('ok');
+    if(sel){const j=+sel.dataset.j;if(j===c)g++;else sel.classList.add('no');}
+  });return {got:g,total:ex.items.length};}};
+}
+
+function buildOrder(ex){
+  const wrap=el('div','order-ex');
+  ex.items.forEach((it,i)=>{
+    const block=el('div','item');block.style.display='block';
+    const line=el('div','order-line');line.dataset.i=i;
+    const tiles=el('div','order-tiles');
+    // stable shuffle by rotation (no Math.random needed)
+    const shuffled=it.tokens.map((t,k)=>({t,k})).sort((a,b)=>((a.k*7+i*3)%it.tokens.length)-((b.k*7+i*3)%it.tokens.length));
+    shuffled.forEach(({t})=>{
+      const tile=el('span','tile',esc(t));
+      tile.onclick=()=>{const cl=el('span','tile',esc(t));cl.onclick=()=>{cl.remove();tile.classList.remove('used');};
+        line.appendChild(cl);tile.classList.add('used');};
+      tiles.appendChild(tile);
+    });
+    block.innerHTML=`<div style="font-size:13px;color:var(--muted);margin-bottom:2px"><b>${i+1}.</b> Tap the words in order:</div>`;
+    block.appendChild(tiles);block.appendChild(line);
+    wrap.appendChild(block);
+  });
+  return {node:wrap, check(){let g=0;ex.items.forEach((it,i)=>{
+    const line=wrap.querySelector(`.order-line[data-i="${i}"]`);
+    const built=[...line.querySelectorAll('.tile')].map(t=>t.textContent).join(' ');
+    const ok=norm(built)===norm(it.answer);
+    line.classList.toggle('ok',ok);line.classList.toggle('no',!ok);if(ok)g++;
+  });return {got:g,total:ex.items.length};}};
+}
+
+function buildSpeak(ex){
+  const wrap=el('div','speak');
+  ex.items.forEach((it,i)=>{
+    const row=el('div','item');
+    const inpt=it.write?`<br><input class="gap wide" autocomplete="off" data-i="${i}">`:'';
+    row.innerHTML=`<span class="qn">${i+1}</span><span class="body"><b>${esc(it.prompt)}</b>${inpt}`+
+      `<div class="model" data-i="${i}">Model: ${esc(it.model)}</div></span>`;
+    wrap.appendChild(row);
+  });
+  const rev=el('button','btn ghost','Show model answers');
+  rev.onclick=()=>wrap.querySelectorAll('.model').forEach(m=>m.classList.add('show'));
+  return {node:wrap, extra:rev, check:ex.items.some(it=>it.write)?function(){let g=0,tot=0;ex.items.forEach((it,i)=>{
+      if(!it.write)return;tot++;const inp=wrap.querySelector(`input[data-i="${i}"]`);
+      const ok=eqAny(inp.value,it.answers||[it.model]);inp.classList.toggle('ok',ok);inp.classList.toggle('no',!ok);if(ok)g++;});
+    wrap.querySelectorAll('.model').forEach(m=>m.classList.add('show'));return {got:g,total:tot};}:null};
+}
+
+const BUILDERS={choice:buildChoice,gap:buildGap,match:buildMatch,tf:buildTF,forms:buildForms,
+  category:buildCategory,scene:buildScene,order:buildOrder,speak:buildSpeak};
+
+/* ============ render an exercise ============ */
+function renderEx(ex){
+  const box=el('section','ex');box.id='ex'+ex.id;
+  const iconTxt={grammar:'⚙',vocab:'Aa',reading:'📖',speaking:'💬',listening:'🎧'}[ex.icon]||'⚙';
+  const adapt=ex.adapt?`<span class="adapt">${esc(ex.adapt)}</span>`:'';
+  box.appendChild(el('div','ex-head',
+    `<span class="badge ${ex.icon}">${iconTxt}</span><span class="ttl"><span class="code">${ex.id}</span>${esc(ex.instr)}${adapt}</span>`));
+  if(ex.sample) box.appendChild(el('div','sample',`<span class="lab">SAMPLE</span>${ex.sample}`));
+  if(ex.intro) box.appendChild(el('div','note',ex.intro));
+  const built=BUILDERS[ex.type](ex);
+  box.appendChild(built.node);
+  if(built.check){
+    const actions=el('div','actions');
+    const btn=el('button','btn','Check');
+    const score=el('div','score');
+    btn.onclick=()=>{const r=built.check(box);setScore(score,r.got,r.total);};
+    actions.appendChild(btn);
+    if(built.extra)actions.appendChild(built.extra);
+    actions.appendChild(score);
+    box.appendChild(actions);
+  } else if(built.extra){
+    const actions=el('div','actions');actions.appendChild(built.extra);box.appendChild(actions);
+  }
+  if(ex.key){const d=el('details','key');d.innerHTML=`<summary>Show answer key</summary><div class="k">${ex.key}</div>`;box.appendChild(d);}
+  return box;
+}
+
+/* ============ DATA ============ */
+const UNITS=[
+{n:'01',id:'u1',title:'Talking about yourself',
+ blurb:'When you want to tell someone about yourself, or about people and things that relate to you, you use the present simple of “to be”.',
+ tags:{New_language:'Using “to be”',Vocabulary:'Names, jobs, and family',New_skill:'Talking about yourself'},
+ ex:[
+  {id:'1.1',icon:'grammar',type:'choice',instr:'CROSS OUT THE INCORRECT WORD IN EACH SENTENCE',
+   sample:'Jack <s>are</s> / <b>is</b> 27 years old.',
+   items:[
+    {before:'They',options:['are','is'],correct:0,after:'the Walker family.'},
+    {before:'You',options:['am','are'],correct:1,after:'a police officer.'},
+    {before:'Eve',options:['is','are'],correct:0,after:'from Canada.'},
+    {before:'I',options:['is','am'],correct:1,after:'a teacher.'},
+    {before:'We',options:['are','is'],correct:0,after:'Australian.'},
+    {before:'He',options:['am','is'],correct:1,after:'an artist.'},
+   ]},
+  {id:'1.2',icon:'grammar',type:'gap',instr:'FILL IN THE GAPS WITH “AM,” “IS,” OR “ARE”',
+   sample:'We <b>are</b> Australian.',
+   items:[
+    {before:'They',answers:['are'],after:'doctors.'},
+    {before:'I',answers:['am'],after:'from Canada.'},
+    {before:'Elizabeth',answers:['is'],after:'British.'},
+    {before:'You',answers:['are'],after:'a mechanic.'},
+    {before:'Luke',answers:['is'],after:'an engineer.'},
+    {before:'She',answers:['is'],after:'35 years old.'},
+   ]},
+  {id:'1.3',icon:'speaking',type:'speak',instr:'USE THE CHART TO CREATE CORRECT SENTENCES AND SAY THEM OUT LOUD',
+   intro:'Combine <b>We / I / She</b> + <b>are / am / is</b> + <b>French · chefs · Anita · an actor</b>. Say eight correct sentences out loud, then reveal examples.',
+   items:[
+    {prompt:'We + are + …',model:'We are French. / We are chefs.'},
+    {prompt:'I + am + …',model:'I am French. / I am a chef. / I am an actor.'},
+    {prompt:'She + is + …',model:'She is French. / She is Anita. / She is an actor.'},
+   ]},
+  {id:'1.4',icon:'grammar',type:'gap',instr:'FILL IN THE GAPS TO MAKE NEGATIVE SENTENCES',
+   sample:'I <b>am not</b> from Argentina.',
+   key:'aren’t · isn’t · isn’t · aren’t · isn’t · aren’t · isn’t · aren’t · isn’t · aren’t · isn’t · isn’t (full forms also accepted).',
+   items:[
+    {before:'John and Ellie',answers:["aren't","are not"],after:'best friends.'},
+    {before:'Mr. Robbins',answers:["isn't","is not"],after:'a teacher.'},
+    {before:'It',answers:["isn't","is not"],after:"2 o'clock."},
+    {before:'You',answers:["aren't","are not"],after:'my sister.'},
+    {before:'Annabelle',answers:["isn't","is not"],after:'at school.'},
+    {before:'Ann and Ravi',answers:["aren't","are not"],after:'students.'},
+    {before:'Ken',answers:["isn't","is not"],after:'a mechanic.'},
+    {before:'We',answers:["aren't","are not"],after:'doctors.'},
+    {before:'He',answers:["isn't","is not"],after:'45 years old.'},
+    {before:'They',answers:["aren't","are not"],after:'my teachers.'},
+    {before:'She',answers:["isn't","is not"],after:'from Ireland.'},
+    {before:'It',answers:["isn't","is not"],after:"Martha's book."},
+   ]},
+  {id:'1.5',icon:'grammar',type:'gap',wide:true,instr:'REWRITE EACH SENTENCE IN ITS NEGATIVE FORM',
+   sample:'Adam is a nurse. → <b>Adam is not a nurse.</b>',
+   items:[
+    {before:'This is the bank. →',answers:['This is not the bank','This isn\'t the bank']},
+    {before:'You are a gardener. →',answers:['You are not a gardener','You aren\'t a gardener']},
+    {before:'Selma is a teacher. →',answers:['Selma is not a teacher','Selma isn\'t a teacher']},
+    {before:'We are from Spain. →',answers:['We are not from Spain','We aren\'t from Spain']},
+    {before:'I am at home. →',answers:['I am not at home','I\'m not at home']},
+    {before:'They are 20 years old. →',answers:['They are not 20 years old','They aren\'t 20 years old']},
+   ]},
+  {id:'1.6',icon:'speaking',type:'gap',instr:'FILL IN THE GAPS TO MAKE QUESTIONS, THEN SAY THEM OUT LOUD',
+   sample:'<b>Are</b> you from France?',
+   items:[
+    {before:'',answers:['Are'],after:'they your dogs?'},
+    {before:'',answers:['Is'],after:'Jo your cousin?'},
+    {before:'',answers:['Is'],after:"it 10 o'clock?"},
+    {before:'',answers:['Am'],after:'I in your class?'},
+    {before:'',answers:['Are'],after:'you Canadian?'},
+    {before:'',answers:['Are'],after:'those your keys?'},
+    {before:'',answers:['Is'],after:'Martin at work today?'},
+    {before:'',answers:['Is'],after:'Elena 28 years old?'},
+    {before:'',answers:['Are'],after:'they nurses?'},
+   ]},
+ ]},
+
+{n:'02',id:'u2',title:'Talking about routines',
+ blurb:'You can use present simple statements to describe your daily routines, pastimes, and possessions. Use “do” to form negatives and ask questions.',
+ tags:{New_language:'The present simple',Vocabulary:'Routines and pastimes',New_skill:'Talking about routines'},
+ ex:[
+  {id:'2.1',icon:'grammar',type:'choice',instr:'CROSS OUT THE INCORRECT WORD IN EACH SENTENCE',
+   sample:'Eddie <s>live</s> / <b>lives</b> in Canada.',
+   items:[
+    {before:'They',options:['cook','cooks'],correct:0,after:'pizza for dinner.'},
+    {before:'Your friend',options:['has','have'],correct:0,after:'a microwave.'},
+    {before:'She',options:['work','works'],correct:1,after:'at the gym.'},
+    {before:'I',options:['watch','watches'],correct:0,after:'TV every day.'},
+    {before:'We',options:['leaves','leave'],correct:1,after:'work at 5pm.'},
+    {before:'Mark',options:['has','have'],correct:0,after:'a skateboard.'},
+    {before:'They',options:['start','starts'],correct:0,after:'school at 9am.'},
+    {before:'You',options:['hates','hate'],correct:1,after:'soccer.'},
+    {before:'Tara',options:['eat','eats'],correct:1,after:'breakfast at 7:15am.'},
+    {before:'I',options:['go','goes'],correct:0,after:'to the park after work.'},
+    {before:'We',options:['wakes up','wake up'],correct:1,after:'at 7am.'},
+    {before:'He',options:['cook','cooks'],correct:1,after:'dinner at 8pm.'},
+    {before:'My son',options:['walks','walk'],correct:0,after:'to school.'},
+   ]},
+  {id:'2.2',icon:'grammar',type:'gap',instr:'FILL IN THE GAPS USING THE WORDS IN THE PANEL',
+   sample:'We <b>live</b> in New York.',
+   bank:['has','go','wake up','watches','leave','eat','works'],
+   items:[
+    {before:'Laura',answers:['watches'],after:'TV all day.'},
+    {before:'You',answers:['wake up'],after:'at 7am.'},
+    {before:'I',answers:['leave'],after:'work at 6pm.'},
+    {before:'My cousins',answers:['go'],after:'to the gym.'},
+    {before:'She',answers:['has'],after:'a laptop.'},
+    {before:'James',answers:['works'],after:'in a bank.'},
+    {before:'They',answers:['eat'],after:'lunch at 1:30pm.'},
+   ]},
+  {id:'2.3',icon:'speaking',type:'gap',instr:'FILL IN THE GAPS, THEN SAY THE SENTENCES OUT LOUD',
+   sample:'Omar <b>works</b> (work) in an office.',
+   items:[
+    {before:'They',cue:'eat',answers:['eat'],after:'pizza for lunch.'},
+    {before:'Mia',cue:'get up',answers:['gets up'],after:'late on Saturdays.'},
+    {before:'You',cue:'go',answers:['go'],after:'to work early.'},
+    {before:'We',cue:'cook',answers:['cook'],after:'dinner at 7:30pm.'},
+    {before:'Paul',cue:'finish',answers:['finishes'],after:'work at 6pm.'},
+    {before:'Lily',cue:'watch',answers:['watches'],after:'TV every day.'},
+    {before:'They',cue:'start',answers:['start'],after:'work at 10am.'},
+    {before:'Robert',cue:'have',answers:['has'],after:'a car.'},
+    {before:'I',cue:'wake up',answers:['wake up'],after:'at 6:45am.'},
+    {before:'Jay',cue:'study',answers:['studies'],after:'science every day.'},
+    {before:'Karen',cue:'like',answers:['likes'],after:'tennis.'},
+    {before:'He',cue:'work',answers:['works'],after:'in a school.'},
+    {before:'Jess',cue:'go',answers:['goes'],after:'to bed at 10pm.'},
+   ]},
+  {id:'2.4',icon:'grammar',type:'order',adapt:'🎧→📖 adapted',
+   instr:'PUT THE DAILY ROUTINE IN ORDER — FROM MORNING TO NIGHT',
+   intro:'The book plays audio to number pictures. Here, order the routine yourself (morning → night).',
+   items:[
+    {tokens:['She','wakes up','at','7am.'],answer:'She wakes up at 7am.'},
+    {tokens:['She','eats','breakfast','at','the','table.'],answer:'She eats breakfast at the table.'},
+    {tokens:['She','goes','shopping','for','clothes.'],answer:'She goes shopping for clothes.'},
+    {tokens:['She','cooks','lunch','on','the','stove.'],answer:'She cooks lunch on the stove.'},
+    {tokens:['She','works','at','her','desk.'],answer:'She works at her desk.'},
+    {tokens:['She','relaxes','on','the','sofa','at','night.'],answer:'She relaxes on the sofa at night.'},
+   ]},
+  {id:'2.5',icon:'reading',type:'tf',instr:'READ THE BLOG AND MARK EACH SENTENCE TRUE, FALSE, OR NOT GIVEN',
+   title:'My Routine — by Edward',
+   text:`<p>Hi, my name’s Edward. I live in Sydney, Australia. I get up at 7am every morning. I have breakfast at 7:30am and I take the bus to work. I start work at 9am every day. I don’t work in an office — I’m a gardener and I work outside. I have lunch with my friends Steve and Vicky at 1pm. I leave work at 5:30pm. After work, I go swimming or I play tennis. In the evening I walk in the park with my dog. I go to bed at 10:30pm. Most weekends, I meet friends and I like watching movies. I like Sydney — it’s a great city.</p>`,
+   key:'False · True · Not given · True · True · Not given',
+   items:[
+    {stmt:'He gets up at 7:30am.',ans:'False'},
+    {stmt:"He doesn't work in an office.",ans:'True'},
+    {stmt:'He likes his job.',ans:'Not given'},
+    {stmt:'He has lunch with his friends.',ans:'True'},
+    {stmt:'He has a dog.',ans:'True'},
+    {stmt:'He goes swimming most weekends.',ans:'Not given'},
+   ]},
+  {id:'2.6',icon:'grammar',type:'match',instr:'MATCH THE BEGINNINGS OF THE SENTENCES TO THE CORRECT ENDINGS',
+   sample:'They go to → <b>the gym after work.</b>',
+   right:['at 1:30 every day.','6:30 every morning.','two cats and a dog.','TV in the evening.','every day.','an office in town.'],
+   pairs:[
+    {left:'We eat lunch',correct:0},
+    {left:'Katia wakes up at',correct:1},
+    {left:'My parents have',correct:2},
+    {left:'Dave watches',correct:3},
+    {left:'I walk to work',correct:4},
+    {left:'You work in',correct:5},
+   ]},
+  {id:'2.7',icon:'grammar',type:'forms',instr:'WRITE EACH SENTENCE THE OTHER TWO WAYS',
+   intro:'Positive · full negative (do/does not) · contracted (don’t/doesn’t). One is given — fill the other two.',
+   sample:'She lives in Britain. · She does not live in Britain. · She doesn’t live in Britain.',
+   cols:['Positive','Negative (full)','Negative (short)'],
+   rows:[
+    {given:0,vals:[{display:'I work in a school.'},{accept:['I do not work in a school']},{accept:["I don't work in a school"]}]},
+    {given:1,vals:[{accept:['Sam eats lunch at 1pm']},{display:'Sam does not eat lunch at 1pm.'},{accept:["Sam doesn't eat lunch at 1pm"]}]},
+    {given:2,vals:[{accept:['We leave home at 7:45am']},{accept:['We do not leave home at 7:45am']},{display:"We don't leave home at 7:45am."}]},
+    {given:0,vals:[{display:'They like pizza.'},{accept:['They do not like pizza']},{accept:["They don't like pizza"]}]},
+    {given:1,vals:[{accept:['Sia watches TV every day']},{display:'Sia does not watch TV every day.'},{accept:["Sia doesn't watch TV every day"]}]},
+    {given:2,vals:[{accept:['My friend has a dog']},{accept:['My friend does not have a dog']},{display:"My friend doesn't have a dog."}]},
+    {given:0,vals:[{display:'You get up early.'},{accept:['You do not get up early']},{accept:["You don't get up early"]}]},
+    {given:1,vals:[{accept:['I have a new coat']},{display:'I do not have a new coat.'},{accept:["I don't have a new coat"]}]},
+    {given:2,vals:[{accept:['He finishes work at 5:30pm']},{accept:['He does not finish work at 5:30pm']},{display:"He doesn't finish work at 5:30pm."}]},
+   ]},
+  {id:'2.8',icon:'speaking',type:'speak',instr:'USE THE CHARTS TO CREATE CORRECT SENTENCES AND SAY THEM OUT LOUD',
+   intro:'Chart 1: <b>Lucy / I / They</b> + <b>doesn’t / don’t</b> + <b>walk / get up / eat</b> + <b>to work · early · breakfast</b>. Chart 2: <b>Do you / Does John</b> + <b>like / work</b> + <b>cats? · soccer? · in an office?</b>',
+   items:[
+    {prompt:'Negatives (chart 1)',model:'Lucy doesn’t walk to work. · I don’t get up early. · They don’t eat breakfast.'},
+    {prompt:'Questions (chart 2)',model:'Do you like cats? · Does John work in an office? · Do you like soccer?'},
+   ]},
+ ]},
+
+{n:'03',id:'u3',title:'Today I’m wearing…',
+ blurb:'You can use the present continuous to describe something that is happening now. It is often used to describe what people are wearing, using, or doing.',
+ tags:{New_language:'The present continuous',Vocabulary:'Clothes and activities',New_skill:'Talking about what’s happening now'},
+ ex:[
+  {id:'3.1',icon:'grammar',type:'choice',instr:'CROSS OUT THE INCORRECT WORD IN EACH SENTENCE',
+   sample:'Sandra <b>is</b> / <s>are</s> having her dinner.',
+   items:[
+    {before:'Glen',options:['is','are'],correct:0,after:'cleaning his car.'},
+    {before:'April',options:['is','are'],correct:0,after:'watching a film.'},
+    {before:'Peter and Frank',options:['is','are'],correct:1,after:'wearing suits.'},
+    {before:'James',options:['is','are'],correct:0,after:'painting the kitchen.'},
+    {before:'We',options:['is','are'],correct:1,after:'traveling around China.'},
+    {before:'You',options:['is','are'],correct:1,after:'listening to an interesting song.'},
+    {before:'Doug',options:['is','are'],correct:0,after:'reading a newspaper.'},
+   ]},
+  {id:'3.2',icon:'vocab',type:'scene',adapt:'🎧→🖼 adapted',
+   instr:'MATCH EACH PICTURE TO THE SENTENCE THAT DESCRIBES IT',
+   intro:'The book uses audio here. Instead, pick the present-continuous sentence that matches each scene.',
+   items:[
+    {pic:'⚽️',options:["They're playing soccer.","They're watching soccer."],correct:0},
+    {pic:'🍳',options:["She's eating dinner.","She's cooking dinner."],correct:1},
+    {pic:'📖',options:["He's reading with his son.","He's writing with his son."],correct:0},
+    {pic:'💻',options:["He's working at his desk.","He's sleeping at his desk."],correct:0},
+    {pic:'🥾',options:["They're hiking in the mountains.","They're driving in the mountains."],correct:0},
+    {pic:'🎬',options:["They're watching a movie.","They're making a movie."],correct:0},
+   ]},
+  {id:'3.3',icon:'grammar',type:'gap',instr:'FILL IN THE GAPS BY PUTTING THE VERBS IN THE PRESENT CONTINUOUS',
+   sample:'Mario <b>is walking</b> (walk) his dog in the park.',
+   items:[
+    {before:'Anne',cue:'wait',answers:['is waiting'],after:'for her brother.'},
+    {before:'Pedro',cue:'cook',answers:['is cooking'],after:'pizza for dinner.'},
+    {before:'Mike',cue:'mow',answers:['is mowing'],after:'the lawn.'},
+    {before:'Cynthia',cue:'lie',answers:['is lying'],after:'on the sofa.'},
+    {before:'Jane',cue:'go',answers:['is going'],after:'to the theater.'},
+    {before:'I',cue:'work',answers:['am working'],after:'at the moment.'},
+    {before:'Colin',cue:'listen',answers:['is listening'],after:'to some music.'},
+    {before:'Our children',cue:'play',answers:['are playing'],after:'in a band.'},
+    {before:'We',cue:'drink',answers:['are drinking'],after:'lemonade.'},
+    {before:'Stefan',cue:'come',answers:['is coming'],after:'to our party.'},
+    {before:'They',cue:'eat',answers:['are eating'],after:'pasta for dinner.'},
+    {before:'Roberta',cue:'wear',answers:['is wearing'],after:'a sweater.'},
+    {before:'You',cue:'play',answers:['are playing'],after:'tennis with John.'},
+   ]},
+  {id:'3.4',icon:'grammar',type:'match',instr:'MATCH THE BEGINNINGS OF THE SENTENCES TO THE CORRECT ENDINGS',
+   sample:'Julie doesn’t usually wear dresses, → <b>but today she’s wearing a bright red dress.</b>',
+   right:["but tonight she's watching a good movie.","but today he's eating at a restaurant.",
+     "but this evening I'm going to bed early.","but she usually works in an office.",
+     "but today he's wearing a business suit.","but this morning he's having eggs.",
+     "but this year we're visiting Italy.","but today I'm walking as my car won't start.",
+     "but he normally drinks beer.","but today you're wearing a skirt."],
+   pairs:[
+    {left:"Paula doesn't often watch TV,",correct:0},
+    {left:'Sven usually cooks at home,',correct:1},
+    {left:'I often go to bed at 11pm,',correct:2},
+    {left:'Janet is working at home today,',correct:3},
+    {left:'Ravi usually wears casual clothes,',correct:4},
+    {left:'Tim usually has cereal for breakfast,',correct:5},
+    {left:'We usually go on vacation to Greece,',correct:6},
+    {left:'I almost always drive to work,',correct:7},
+    {left:'Nelson is drinking wine today,',correct:8},
+    {left:'You usually wear pants,',correct:9},
+   ]},
+  {id:'3.5',icon:'grammar',type:'choice',instr:'CROSS OUT THE INCORRECT WORD IN EACH SENTENCE',
+   sample:'They <s>isn’t</s> / <b>aren’t</b> wearing coats.',
+   items:[
+    {before:'Vlad',options:["isn't","aren't"],correct:0,after:'playing soccer.'},
+    {before:'We',options:["isn't","aren't"],correct:1,after:'working today.'},
+    {before:'Manek',options:["isn't","aren't"],correct:0,after:'wearing a tie.'},
+    {before:'We',options:["isn't","aren't"],correct:1,after:'coming to the party.'},
+    {before:'Clarice',options:["isn't","aren't"],correct:0,after:'having dinner today.'},
+    {before:'Jonathan',options:["isn't","aren't"],correct:0,after:'walking the dog.'},
+    {before:'Mark and Trevor',options:["isn't","aren't"],correct:1,after:'going to the theater.'},
+    {before:'Pedro',options:["isn't","aren't"],correct:0,after:'wearing a suit.'},
+    {before:'Sally and Clive',options:["isn't","aren't"],correct:1,after:'going on vacation.'},
+    {before:'Sebastian',options:["isn't","aren't"],correct:0,after:'watching the movie.'},
+    {before:'You',options:["isn't","aren't"],correct:1,after:'working hard enough.'},
+   ]},
+  {id:'3.6',icon:'grammar',type:'forms',instr:'WRITE EACH SENTENCE IN ITS OTHER FORM',
+   sample:'Karl is writing. · Karl isn’t writing.',
+   cols:['Positive','Negative'],
+   rows:[
+    {given:0,vals:[{display:'Angelica is watching TV.'},{accept:["Angelica isn't watching TV","Angelica is not watching TV"]}]},
+    {given:1,vals:[{accept:["I'm working at home","I am working at home"]},{display:'I’m not working at home.'}]},
+    {given:0,vals:[{display:'We’re playing soccer.'},{accept:["We aren't playing soccer","We are not playing soccer"]}]},
+    {given:1,vals:[{accept:['Ginny is eating a burger']},{display:'Ginny isn’t eating a burger.'}]},
+    {given:0,vals:[{display:'Sharon is listening to music.'},{accept:["Sharon isn't listening to music","Sharon is not listening to music"]}]},
+    {given:1,vals:[{accept:["They're drinking soda","They are drinking soda"]},{display:'They aren’t drinking soda.'}]},
+    {given:0,vals:[{display:'We’re going shopping.'},{accept:["We aren't going shopping","We are not going shopping"]}]},
+    {given:1,vals:[{accept:['Anita is visiting Athens']},{display:'Anita isn’t visiting Athens.'}]},
+    {given:0,vals:[{display:'Pete’s playing tennis.'},{accept:["Pete isn't playing tennis","Pete is not playing tennis"]}]},
+    {given:1,vals:[{accept:["You're speaking Dutch","You are speaking Dutch"]},{display:'You aren’t speaking Dutch.'}]},
+    {given:0,vals:[{display:'Paul’s wearing a hat.'},{accept:["Paul isn't wearing a hat","Paul is not wearing a hat"]}]},
+    {given:1,vals:[{accept:['I am walking home',"I'm walking home"]},{display:'I am not walking home.'}]},
+    {given:0,vals:[{display:'Steven is going swimming.'},{accept:["Steven isn't going swimming","Steven is not going swimming"]}]},
+   ]},
+  {id:'3.7',icon:'grammar',type:'order',instr:'PUT THE WORDS IN THE CORRECT ORDER',
+   sample:'wearing / Greg / isn’t / a / suit. → <b>Greg isn’t wearing a suit.</b>',
+   items:[
+    {tokens:['on','going','this','vacation','year.','Kate',"isn't"],answer:"Kate isn't going on vacation this year."},
+    {tokens:['walk.','is','the','dog','Tracy','for','a','taking'],answer:'Tracy is taking the dog for a walk.'},
+    {tokens:["isn't",'Irena','to','party.','coming','the'],answer:"Irena isn't coming to the party."},
+    {tokens:['walking','We','to','today.','school','are'],answer:'We are walking to school today.'},
+    {tokens:['cooking','Trevor','dinner.','his','is'],answer:'Trevor is cooking his dinner.'},
+    {tokens:['traveling','Mr.','Smith','is','Singapore.','to'],answer:'Mr. Smith is traveling to Singapore.'},
+    {tokens:['today.','playing',"aren't",'soccer','They'],answer:"They aren't playing soccer today."},
+    {tokens:['a','am','pair','of','shoes.','I','buying','new'],answer:'I am buying a new pair of shoes.'},
+    {tokens:["aren't",'coat','a','You','today.','wearing'],answer:"You aren't wearing a coat today."},
+   ]},
+  {id:'3.8',icon:'grammar',type:'scene',adapt:'🖼 adapted',
+   instr:'MARK THE SENTENCE THAT MATCHES EACH PICTURE',
+   sample:'🤠 → <b>Deborah is wearing a hat.</b>',
+   items:[
+    {pic:'👗',options:['Jenny is wearing a red dress.','Jenny is wearing pants.'],correct:0},
+    {pic:'🚶',options:['Gemma is driving to work.',"Gemma isn't driving to work."],correct:1},
+    {pic:'💃',options:['We are dancing.','We are singing.'],correct:0},
+    {pic:'🍔',options:['Brendan is eating a burger.',"Brendan isn't eating a burger."],correct:0},
+    {pic:'🧥',options:['Sal is wearing a short coat.','Sal is wearing a long coat.'],correct:1},
+    {pic:'🎬',options:['Mo is reading a book.','Mo is watching a movie.'],correct:1},
+    {pic:'👓',options:['Emily is wearing glasses.','Emily is wearing a scarf.'],correct:0},
+    {pic:'🎧',options:['Jo is speaking on her cellphone.','Jo is listening to music.'],correct:1},
+    {pic:'👖',options:['Kate is wearing jeans.','Kate is wearing a skirt.'],correct:0},
+   ]},
+ ]},
+
+{n:'04',id:'u4',title:'What’s happening?',
+ blurb:'You can use the present continuous to ask about things that are happening now, in this moment, or today.',
+ tags:{New_language:'Present continuous questions',Vocabulary:'Activities and gadgets',New_skill:'Asking about the present'},
+ ex:[
+  {id:'4.1',icon:'grammar',type:'match',instr:'MATCH THE QUESTIONS TO THEIR ANSWERS',
+   sample:'What are you eating? → <b>A sandwich.</b>',
+   right:['A book.','To the library.','Sue and Johnny.','She’s angry.','A suit and tie.','Playing computer games.'],
+   pairs:[
+    {left:'What is he reading?',correct:0},
+    {left:'Where are you going?',correct:1},
+    {left:'Who is talking?',correct:2},
+    {left:'Why is she shouting?',correct:3},
+    {left:'What is he wearing?',correct:4},
+    {left:'What are the children doing?',correct:5},
+   ]},
+  {id:'4.2',icon:'grammar',type:'gap',instr:'FILL IN THE GAPS USING THE WORDS IN THE PANEL',
+   sample:'Jack is <b>carrying</b> a briefcase.',
+   bank:['listening','walking','eating','wearing','driving','running','cooking'],
+   items:[
+    {before:'Lenny is',answers:['wearing'],after:'a tie today.'},
+    {before:'Sarah is',answers:['cooking'],after:'dinner.'},
+    {before:'Frank is',answers:['running'],after:'in the park.'},
+    {before:'Jane is',answers:['walking'],after:'the dog.'},
+    {before:'Simon is',answers:['listening'],after:'to music.'},
+    {before:'Pat is',answers:['driving'],after:'to work.'},
+    {before:'Gavin is',answers:['eating'],after:'breakfast.'},
+   ]},
+  {id:'4.3',icon:'reading',type:'match',adapt:'🎧→📖 adapted',
+   instr:'READ THE CLUES, THEN MATCH EACH ACTION TO THE RIGHT NAME',
+   intro:'The book plays audio. Read these clues instead: <i>Jack is cooking dinner. Jo is swimming. Alex is riding a horse. Tommy is painting a picture. George is walking in the park with his family. Jean is taking a shower. Ray is working at his desk. Jon is talking on the phone. Isabel is walking in the rain with an umbrella. Louise is reading a book.</i>',
+   right:['Jack','Jo','Alex','Tommy','George','Jean','Ray','Jon','Isabel','Louise'],
+   pairs:[
+    {left:'🍳 cooking dinner',correct:0},
+    {left:'🏊 swimming',correct:1},
+    {left:'🐴 riding a horse',correct:2},
+    {left:'🎨 painting a picture',correct:3},
+    {left:'🌳 walking in the park',correct:4},
+    {left:'🚿 taking a shower',correct:5},
+    {left:'💻 working at a desk',correct:6},
+    {left:'📞 talking on the phone',correct:7},
+    {left:'☔️ walking in the rain',correct:8},
+    {left:'📚 reading a book',correct:9},
+   ]},
+  {id:'4.4',icon:'grammar',type:'gap',wide:true,instr:'REWRITE THE SENTENCES, CORRECTING THE ERRORS',
+   sample:'Jack and Mike is watching a film. → <b>Jack and Mike are watching a film.</b>',
+   items:[
+    {before:'I are doing my English homework. →',answers:['I am doing my English homework']},
+    {before:'He is make breakfast. →',answers:['He is making breakfast']},
+    {before:'She are reading a magazine. →',answers:['She is reading a magazine']},
+    {before:'They is running by the river. →',answers:['They are running by the river']},
+    {before:'I is writing an email. →',answers:['I am writing an email']},
+    {before:'We are listen to music. →',answers:['We are listening to music']},
+    {before:'She am driving to London. →',answers:['She is driving to London']},
+    {before:'He are taking a bath. →',answers:['He is taking a bath']},
+    {before:'They are do the shopping. →',answers:['They are doing the shopping']},
+    {before:'I are eating a pizza. →',answers:['I am eating a pizza']},
+    {before:'You is riding a motorcycle. →',answers:['You are riding a motorcycle']},
+    {before:'We am going to bed. →',answers:['We are going to bed']},
+   ]},
+  {id:'4.5',icon:'grammar',type:'gap',wide:true,instr:'REWRITE THE SENTENCES AS QUESTIONS STARTING WITH “WHAT”',
+   sample:'Jim is reading a book. → <b>What is Jim reading?</b>',
+   items:[
+    {before:'Kay is watching a film. →',answers:['What is Kay watching']},
+    {before:'Dan is eating spaghetti. →',answers:['What is Dan eating']},
+    {before:'Tim and Jay are playing football. →',answers:['What are Tim and Jay playing']},
+    {before:'Sara is wearing a dress. →',answers:['What is Sara wearing']},
+    {before:'You are carrying a suitcase. →',answers:['What are you carrying']},
+    {before:'Charlie is listening to his new CD. →',answers:['What is Charlie listening to']},
+    {before:'Sharon is drinking water. →',answers:['What is Sharon drinking']},
+    {before:'Sam is making a birthday cake. →',answers:['What is Sam making']},
+    {before:'You are writing an email. →',answers:['What are you writing']},
+   ]},
+  {id:'4.6',icon:'grammar',type:'order',instr:'PUT THE WORDS IN THE CORRECT ORDER',
+   sample:'drawing? / is / What / Jack → <b>What is Jack drawing?</b>',
+   items:[
+    {tokens:['going?','is','Kim','Where'],answer:'Where is Kim going?'},
+    {tokens:['you','are','Who','phoning?'],answer:'Who are you phoning?'},
+    {tokens:['crying?','are','Why','you'],answer:'Why are you crying?'},
+    {tokens:['are','John?','meeting','When','you'],answer:'When are you meeting John?'},
+    {tokens:['cooking?','you','are','What'],answer:'What are you cooking?'},
+    {tokens:['is','playing?','your','band','Where'],answer:'Where is your band playing?'},
+    {tokens:['shouting?','you','Why','are'],answer:'Why are you shouting?'},
+    {tokens:['you','drinking?','are','What'],answer:'What are you drinking?'},
+    {tokens:['are','the','concert?','to','you','getting','How'],answer:'How are you getting to the concert?'},
+   ]},
+  {id:'4.7',icon:'reading',type:'match',adapt:'🎧→📖 adapted',
+   instr:'READ THE CLUES, THEN MATCH EACH GADGET TO ITS OWNER',
+   intro:'Read the clues: <i>Betty got a tablet. Robert got a game console. Peter’s mom got a desktop computer. Dan got a smartphone. Claude got an e-reader. Pedro got some earphones.</i>',
+   right:['Betty','Robert','Peter’s mom','Dan','Claude','Pedro'],
+   pairs:[
+    {left:'📱 tablet',correct:0},
+    {left:'🎮 game console',correct:1},
+    {left:'🖥 desktop computer',correct:2},
+    {left:'📲 smartphone',correct:3},
+    {left:'📖 e-reader',correct:4},
+    {left:'🎧 earphones',correct:5},
+   ]},
+  {id:'4.8',icon:'speaking',type:'speak',instr:'ANSWER THE QUESTIONS OUT LOUD, THEN WRITE THE ANSWERS',
+   sample:'What is Louise wearing? → <b>Louise is wearing a red dress.</b>',
+   items:[
+    {prompt:'What are they drinking? (some coffee)',write:true,answers:['They are drinking some coffee','They are drinking coffee'],model:'They are drinking some coffee.'},
+    {prompt:'What is Meg eating? (a pizza)',write:true,answers:['Meg is eating a pizza'],model:'Meg is eating a pizza.'},
+    {prompt:'What is Louise riding? (a horse)',write:true,answers:['Louise is riding a horse'],model:'Louise is riding a horse.'},
+    {prompt:'What is Paul using? (his computer)',write:true,answers:['Paul is using his computer'],model:'Paul is using his computer.'},
+    {prompt:'What is Philippa baking? (a cake)',write:true,answers:['Philippa is baking a cake'],model:'Philippa is baking a cake.'},
+   ]},
+ ]},
+
+{n:'05',id:'u5',title:'Types of verbs',
+ blurb:'You can use most verbs in the continuous form to describe ongoing actions. Some verbs cannot be used this way — these are called “state” verbs.',
+ tags:{New_language:'Action and state verbs',Vocabulary:'Activities',New_skill:'Using state verbs'},
+ ex:[
+  {id:'5.1',icon:'grammar',type:'category',instr:'SORT THE WORDS INTO THE CORRECT GROUPS',
+   sample:'read → Action · like → State',
+   groups:['Action','State'],
+   key:'Action: eat, sing, learn, play, go, listen · State: have, love, want, remember, know, hate',
+   words:[
+    {w:'eat',group:'Action'},{w:'have',group:'State'},{w:'sing',group:'Action'},{w:'learn',group:'Action'},
+    {w:'love',group:'State'},{w:'want',group:'State'},{w:'play',group:'Action'},{w:'remember',group:'State'},
+    {w:'go',group:'Action'},{w:'listen',group:'Action'},{w:'know',group:'State'},{w:'hate',group:'State'},
+   ]},
+  {id:'5.2',icon:'speaking',type:'gap',wide:true,instr:'CORRECT THE ERRORS (STATE VERBS DO NOT TAKE THE CONTINUOUS)',
+   sample:'Suzy is knowing Jim. → <b>Suzy knows Jim.</b>',
+   items:[
+    {before:'I am remembering it is your birthday today. →',answers:['I remember it is your birthday today',"I remember it's your birthday today"]},
+    {before:'Dan is wanting a drink. →',answers:['Dan wants a drink']},
+    {before:'You are having two sisters. →',answers:['You have two sisters']},
+    {before:'He is owning this house. →',answers:['He owns this house']},
+    {before:'My brother is loving Anne. →',answers:['My brother loves Anne']},
+    {before:'We are owning a horse. →',answers:['We own a horse']},
+    {before:'My dad is hating pizza. →',answers:['My dad hates pizza']},
+   ]},
+  {id:'5.3',icon:'grammar',type:'choice',instr:'CROSS OUT THE INCORRECT WORDS IN EACH SENTENCE',
+   sample:'I <b>want</b> / <s>am wanting</s> some juice please.',
+   items:[
+    {before:'Greg',options:['plays','is playing'],correct:1,after:'tennis now.'},
+    {before:'Mo',options:['watches','is watching'],correct:1,after:'TV right now.'},
+    {before:'We',options:['have','are having'],correct:0,after:'a new dog.'},
+    {before:'You',options:["don't like","aren't liking"],correct:0,after:'snakes.'},
+    {before:'Dom',options:['goes','is going'],correct:1,after:'to school now.'},
+   ]},
+  {id:'5.4',icon:'grammar',type:'gap',adapt:'🎧→📖 adapted',
+   instr:'FILL IN THE GAPS (PRESENT SIMPLE) — Jane talks about her life in Los Angeles and her family',
+   sample:'Jane <b>lives</b> in Los Angeles.',
+   items:[
+    {before:'Jane',answers:['works','teaches'],after:'at the school near her apartment.'},
+    {before:'Jane really',answers:['likes','loves','enjoys'],after:'teaching.'},
+    {before:'Jane',answers:['goes'],after:'to restaurants on the weekend.'},
+    {before:'Jane',answers:['has'],after:'three children.'},
+    {before:'Ben',answers:['plays'],after:'soccer with his friends.'},
+    {before:'Silvia',answers:['watches'],after:'a film at the movie theater.'},
+    {before:'Mike',answers:['listens'],after:'to music in his room.'},
+   ]},
+  {id:'5.5',icon:'vocab',type:'scene',adapt:'🖼 adapted',
+   instr:'MATCH EACH PICTURE TO THE CORRECT SENTENCE',
+   sample:'🛋 → <b>He’s watching TV.</b>',
+   items:[
+    {pic:'👩‍👧‍👦',options:['Samantha has three children.','She hates snakes.'],correct:0},
+    {pic:'🏃🏫',options:["They're running to school.","She's listening to music."],correct:0},
+    {pic:'🐍😱',options:['She hates snakes.','He’s watching TV.'],correct:0},
+    {pic:'🎧',options:["She's listening to music.","They're running to school."],correct:0},
+   ]},
+ ]},
+];
+
+/* ============ mount ============ */
+const root=document.getElementById('units');
+UNITS.forEach(u=>{
+  const sec=el('section','unit');sec.id=u.id;
+  sec.appendChild(el('div','unit-head',`<span class="num">${u.n}</span><h2>${esc(u.title)}</h2>`));
+  sec.appendChild(el('p','unit-blurb',esc(u.blurb)));
+  const tags=el('div','tags');
+  Object.entries(u.tags).forEach(([k,v])=>tags.appendChild(el('span','tag',`<b>${k.replace(/_/g,' ')}</b> ${esc(v)}`)));
+  sec.appendChild(tags);
+  u.ex.forEach(ex=>sec.appendChild(renderEx(ex)));
+  root.appendChild(sec);
+});
+
+/* ============ listening exercises (from the audio) ============ */
+const LISTEN=[
+ {id:'L.1',icon:'listening',type:'gap',
+  instr:'LISTEN AND COMPLETE — where people are from and their jobs',
+  intro:'Play the audio above. The speakers introduce themselves. Fill in the missing words.',
+  items:[
+   {before:'Monzer is from',answers:['Canada'],after:'.'},
+   {before:'Monzer works for an',answers:['engineering'],after:'company.'},
+   {before:'Rob is a',answers:['journalist'],after:'.'},
+   {before:'Rob is from',answers:['Wimbledon'],after:'.'},
+   {before:'Rose lives in',answers:['Birmingham'],after:', but she is originally from London.'},
+   {before:'Jackson lives in London and studies',answers:['film'],after:'at university.'},
+   {before:'Marcello is from the United States and he is a',answers:['student'],after:'.'},
+  ]},
+ {id:'L.2',icon:'listening',type:'match',
+  instr:'MATCH EACH SPEAKER TO WHERE THEY ARE FROM / LIVE',
+  right:['Canada','Wimbledon','Birmingham','London','the United States'],
+  pairs:[
+   {left:'Monzer',correct:0},
+   {left:'Rob',correct:1},
+   {left:'Rose',correct:2},
+   {left:'Jackson',correct:3},
+   {left:'Marcello',correct:4},
+  ]},
+ {id:'L.3',icon:'listening',type:'tf',
+  instr:'LISTEN AGAIN AND MARK EACH SENTENCE TRUE, FALSE, OR NOT GIVEN',
+  title:'What do the speakers say about their families?',
+  text:'<p>Listen to the second half of the recording, where the speakers talk about their families, then decide.</p>',
+  key:'True · True · True · False · True',
+  items:[
+   {stmt:'One speaker has a sister called Sarah who lives in Germany.',ans:'True'},
+   {stmt:'One speaker has nine brothers and sisters.',ans:'True'},
+   {stmt:'One speaker’s parents are called Corey and Nadia.',ans:'True'},
+   {stmt:'Every speaker is single.',ans:'False'},
+   {stmt:'One woman has two sisters, Celine and Aurélie.',ans:'True'},
+  ]},
+];
+const lroot=document.getElementById('listening-root');
+LISTEN.forEach(ex=>lroot.appendChild(renderEx(ex)));
+</script>
+</body>
+</html>
