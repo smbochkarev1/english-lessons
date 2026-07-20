@@ -31,8 +31,7 @@ Add or edit exercises by changing the `UNITS` array — no other code changes ne
 ## Images & audio
 
 - Exercise pictures (`img/ex-*.png`) are the original book illustrations, cropped for the picture-based tasks (2.4, 3.2, 3.8, 4.3, 4.7, 5.5, and the 2.5 blog photo).
-- Exercises 2.4, 3.2, 4.3, 4.7 and 5.4 are listening tasks with an audio-player block in place. The book's own tracks are **not** bundled — drop an MP3 with the matching name into `audio/` to enable playback:
-  `audio/dk-2-4.mp3`, `audio/dk-3-2.mp3`, `audio/dk-4-3.mp3`, `audio/dk-4-7.mp3`, `audio/dk-5-4.mp3`. The correct answers are shown in each exercise's key regardless.
+- Every exercise links to its **official DK audio** (free) on `apps.dk.com/efe/…` — for listening tasks it's the recording, for the others the spoken answers. Nothing copyrighted is rehosted here; the links open DK's own player. Correct answers are also in each exercise's key.
 - `audio/street-interview.mp3` is a separate A2 street-interview recording — a fully working listening task in the bottom section, with answers verified against its transcript.
 
 ## Notes

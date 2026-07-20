@@ -133,6 +133,9 @@
   .audio-slot audio{width:100%;margin:0;}
   .audio-slot .cap{font-size:12px;color:var(--muted);margin-top:7px;line-height:1.5;}
   .audio-slot .cap code{background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:11.5px;}
+  .dk-audio{display:inline-flex;align-items:center;gap:6px;background:#f6f0fb;border:1px solid #e6d7f2;color:#7a4fb0;
+    border-radius:8px;padding:5px 11px;font-size:12.5px;font-weight:700;text-decoration:none;margin:0 0 12px;}
+  .dk-audio:hover{background:#efe4f8;border-color:#d7c1ea;}
   footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:40px;border-top:1px solid var(--line);padding-top:18px;}
 </style>
 </head>
@@ -156,7 +159,7 @@
 
   <div class="note">
     <b>How to use / Как заниматься:</b> Work through each unit top to bottom. Type in the boxes or tap the option buttons, then press <b>Check</b>. Small spelling slips and contractions (<i>isn’t</i> = <i>is not</i>) are accepted. The green sample at the top of each exercise is the answer to question 0.
-    <br><span style="color:var(--muted);font-size:13px;">🎧 Listening exercises have an audio-player block in place. The book’s own tracks aren’t included — drop an MP3 with the shown filename into <code>audio/</code> to enable playback; the correct answers are always in the key. The recorded street-interview clip at the bottom is a full working listening task.</span>
+    <br><span style="color:var(--muted);font-size:13px;">🎧 Every exercise has a link to its official audio on DK’s free site (opens in a new tab): for listening tasks it’s the recording, for the others it’s the spoken answers. Correct answers are also in each key. The street-interview clip in the bottom section plays right here.</span>
   </div>
 
   <div id="units"></div>
@@ -397,10 +400,13 @@ function renderEx(ex){
     `<span class="badge ${ex.icon}">${iconTxt}</span><span class="ttl"><span class="code">${ex.id}</span>${esc(ex.instr)}${adapt}</span>`));
   if(ex.sample) box.appendChild(el('div','sample',`<span class="lab">SAMPLE</span>${ex.sample}`));
   if(ex.intro) box.appendChild(el('div','note',ex.intro));
-  if(ex.audio){
-    const a=el('div','audio-slot');
-    a.innerHTML=`<audio controls preload="none" src="${ex.audio}"></audio>`+
-      (ex.audioNote?`<div class="cap">${ex.audioNote}</div>`:'');
+  if(/^\d/.test(ex.id)){
+    const slug=ex.id.replace('.','-');
+    const a=document.createElement('a');
+    a.className='dk-audio';
+    a.href='https://apps.dk.com/efe/ru/audio/nachinayuschiye-uroven-2/'+slug;
+    a.target='_blank';a.rel='noopener';
+    a.textContent=(ex.icon==='listening'?'🎧 Listen to the exercise audio on DK ↗':'🔊 Listen to the answers on DK ↗');
     box.appendChild(a);
   }
   if(ex.image){
