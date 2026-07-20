@@ -150,16 +150,16 @@
 
   <nav class="nav">
     <a href="#u1">01 · To be</a>
+    <a href="#listen">🎧 Listening</a>
     <a href="#u2">02 · Routines</a>
     <a href="#u3">03 · Wearing now</a>
     <a href="#u4">04 · Questions</a>
     <a href="#u5">05 · Verb types</a>
-    <a href="#listen">🎧 Listening</a>
   </nav>
 
   <div class="note">
     <b>How to use / Как заниматься:</b> Work through each unit top to bottom. Type in the boxes or tap the option buttons, then press <b>Check</b>. Small spelling slips and contractions (<i>isn’t</i> = <i>is not</i>) are accepted. The green sample at the top of each exercise is the answer to question 0.
-    <br><span style="color:var(--muted);font-size:13px;">🎧 Every exercise has a link to its official audio on DK’s free site (opens in a new tab): for listening tasks it’s the recording, for the others it’s the spoken answers. Correct answers are also in each key. The street-interview clip in the bottom section plays right here.</span>
+    <br><span style="color:var(--muted);font-size:13px;">🎧 Every exercise has a link to its official audio on DK’s free site (opens in a new tab): for listening tasks it’s the recording, for the others it’s the spoken answers. Correct answers are also in each key. The street-interview clip (Listening section, right after Unit 1) plays inline on this page.</span>
   </div>
 
   <div id="units"></div>
@@ -404,7 +404,7 @@ function renderEx(ex){
     const slug=ex.id.replace('.','-');
     const a=document.createElement('a');
     a.className='dk-audio';
-    a.href='https://apps.dk.com/efe/ru/audio/nachinayuschiye-uroven-2/'+slug;
+    a.href='https://apps.dk.com/efe/ru/audio/nachinayuschiye-uroven-2-praktikum/'+slug;
     a.target='_blank';a.rel='noopener';
     a.textContent=(ex.icon==='listening'?'🎧 Listen to the exercise audio on DK ↗':'🔊 Listen to the answers on DK ↗');
     box.appendChild(a);
@@ -964,6 +964,8 @@ const LISTEN=[
 ];
 const lroot=document.getElementById('listening-root');
 LISTEN.forEach(ex=>lroot.appendChild(renderEx(ex)));
+// place the street-interview listening right after Unit 1 (its self-introduction theme)
+document.getElementById('u1').insertAdjacentElement('afterend', document.getElementById('listen'));
 </script>
 </body>
 </html>
