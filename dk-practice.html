@@ -127,6 +127,12 @@
   .model.show{display:block;}
   .audio-wrap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:16px 0;}
   audio{width:100%;margin:8px 0;}
+  .ex-img{display:block;max-width:100%;height:auto;border-radius:10px;margin:0 0 14px;border:1px solid var(--line);background:#fff;}
+  .ex-img.tall{max-width:180px;}
+  .audio-slot{background:#f6f0fb;border:1px solid #e6d7f2;border-radius:12px;padding:12px 14px;margin:0 0 14px;}
+  .audio-slot audio{width:100%;margin:0;}
+  .audio-slot .cap{font-size:12px;color:var(--muted);margin-top:7px;line-height:1.5;}
+  .audio-slot .cap code{background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:11.5px;}
   footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:40px;border-top:1px solid var(--line);padding-top:18px;}
 </style>
 </head>
@@ -150,6 +156,7 @@
 
   <div class="note">
     <b>How to use / Как заниматься:</b> Work through each unit top to bottom. Type in the boxes or tap the option buttons, then press <b>Check</b>. Small spelling slips and contractions (<i>isn’t</i> = <i>is not</i>) are accepted. The green sample at the top of each exercise is the answer to question 0.
+    <br><span style="color:var(--muted);font-size:13px;">🎧 Listening exercises have an audio-player block in place. The book’s own tracks aren’t included — drop an MP3 with the shown filename into <code>audio/</code> to enable playback; the correct answers are always in the key. The recorded street-interview clip at the bottom is a full working listening task.</span>
   </div>
 
   <div id="units"></div>
@@ -364,8 +371,22 @@ function buildSpeak(ex){
     wrap.querySelectorAll('.model').forEach(m=>m.classList.add('show'));return {got:g,total:tot};}:null};
 }
 
+function buildNumber(ex){ // number the pictures A–F in the order described
+  const wrap=el('div','number-ex');
+  ex.labels.forEach((lab,i)=>{
+    const row=el('div','item');
+    row.innerHTML=`<span class="qn">${lab}</span><span class="body">Picture ${lab} &nbsp;=&nbsp; `+
+      `<input class="gap" style="min-width:60px" maxlength="2" inputmode="numeric" autocomplete="off" data-i="${i}"></span>`;
+    wrap.appendChild(row);
+  });
+  return {node:wrap, check(){let g=0;ex.labels.forEach((lab,i)=>{
+    const inp=wrap.querySelector(`input[data-i="${i}"]`);const ok=(inp.value.trim()===String(ex.answer[i]));
+    inp.classList.toggle('ok',ok);inp.classList.toggle('no',!ok);if(ok)g++;
+  });return {got:g,total:ex.labels.length};}};
+}
+
 const BUILDERS={choice:buildChoice,gap:buildGap,match:buildMatch,tf:buildTF,forms:buildForms,
-  category:buildCategory,scene:buildScene,order:buildOrder,speak:buildSpeak};
+  category:buildCategory,scene:buildScene,order:buildOrder,speak:buildSpeak,number:buildNumber};
 
 /* ============ render an exercise ============ */
 function renderEx(ex){
@@ -376,6 +397,16 @@ function renderEx(ex){
     `<span class="badge ${ex.icon}">${iconTxt}</span><span class="ttl"><span class="code">${ex.id}</span>${esc(ex.instr)}${adapt}</span>`));
   if(ex.sample) box.appendChild(el('div','sample',`<span class="lab">SAMPLE</span>${ex.sample}`));
   if(ex.intro) box.appendChild(el('div','note',ex.intro));
+  if(ex.audio){
+    const a=el('div','audio-slot');
+    a.innerHTML=`<audio controls preload="none" src="${ex.audio}"></audio>`+
+      (ex.audioNote?`<div class="cap">${ex.audioNote}</div>`:'');
+    box.appendChild(a);
+  }
+  if(ex.image){
+    const im=document.createElement('img');im.className='ex-img'+(ex.imageTall?' tall':'');
+    im.src=ex.image;im.alt=ex.imageAlt||'';im.loading='lazy';box.appendChild(im);
+  }
   const built=BUILDERS[ex.type](ex);
   box.appendChild(built.node);
   if(built.check){
@@ -519,18 +550,16 @@ const UNITS=[
     {before:'He',cue:'work',answers:['works'],after:'in a school.'},
     {before:'Jess',cue:'go',answers:['goes'],after:'to bed at 10pm.'},
    ]},
-  {id:'2.4',icon:'grammar',type:'order',adapt:'🎧→📖 adapted',
-   instr:'PUT THE DAILY ROUTINE IN ORDER — FROM MORNING TO NIGHT',
-   intro:'The book plays audio to number pictures. Here, order the routine yourself (morning → night).',
-   items:[
-    {tokens:['She','wakes up','at','7am.'],answer:'She wakes up at 7am.'},
-    {tokens:['She','eats','breakfast','at','the','table.'],answer:'She eats breakfast at the table.'},
-    {tokens:['She','goes','shopping','for','clothes.'],answer:'She goes shopping for clothes.'},
-    {tokens:['She','cooks','lunch','on','the','stove.'],answer:'She cooks lunch on the stove.'},
-    {tokens:['She','works','at','her','desk.'],answer:'She works at her desk.'},
-    {tokens:['She','relaxes','on','the','sofa','at','night.'],answer:'She relaxes on the sofa at night.'},
-   ]},
+  {id:'2.4',icon:'listening',type:'number',
+   instr:'LISTEN TO THE AUDIO, THEN NUMBER THE PICTURES IN THE ORDER THEY ARE DESCRIBED',
+   image:'img/ex-2-4.png',imageAlt:'Six pictures A–F: shopping, eating, cooking, treadmill, resting, office',
+   audio:'audio/dk-2-4.mp3',
+   audioNote:'🎵 Book audio track. Drop <code>audio/dk-2-4.mp3</code> into the repo to enable playback. The correct order is in the key below.',
+   sample:'Picture <b>B = 1</b>',
+   key:'A = 4 · B = 1 · C = 5 · D = 2 · E = 6 · F = 3',
+   labels:['A','B','C','D','E','F'], answer:[4,1,5,2,6,3]},
   {id:'2.5',icon:'reading',type:'tf',instr:'READ THE BLOG AND MARK EACH SENTENCE TRUE, FALSE, OR NOT GIVEN',
+   image:'img/ex-2-5-photo.png',imageAlt:'Sydney harbour',imageTall:true,
    title:'My Routine — by Edward',
    text:`<p>Hi, my name’s Edward. I live in Sydney, Australia. I get up at 7am every morning. I have breakfast at 7:30am and I take the bus to work. I start work at 9am every day. I don’t work in an office — I’m a gardener and I work outside. I have lunch with my friends Steve and Vicky at 1pm. I leave work at 5:30pm. After work, I go swimming or I play tennis. In the evening I walk in the park with my dog. I go to bed at 10:30pm. Most weekends, I meet friends and I like watching movies. I like Sydney — it’s a great city.</p>`,
    key:'False · True · Not given · True · True · Not given',
@@ -591,17 +620,14 @@ const UNITS=[
     {before:'You',options:['is','are'],correct:1,after:'listening to an interesting song.'},
     {before:'Doug',options:['is','are'],correct:0,after:'reading a newspaper.'},
    ]},
-  {id:'3.2',icon:'vocab',type:'scene',adapt:'🎧→🖼 adapted',
-   instr:'MATCH EACH PICTURE TO THE SENTENCE THAT DESCRIBES IT',
-   intro:'The book uses audio here. Instead, pick the present-continuous sentence that matches each scene.',
-   items:[
-    {pic:'⚽️',options:["They're playing soccer.","They're watching soccer."],correct:0},
-    {pic:'🍳',options:["She's eating dinner.","She's cooking dinner."],correct:1},
-    {pic:'📖',options:["He's reading with his son.","He's writing with his son."],correct:0},
-    {pic:'💻',options:["He's working at his desk.","He's sleeping at his desk."],correct:0},
-    {pic:'🥾',options:["They're hiking in the mountains.","They're driving in the mountains."],correct:0},
-    {pic:'🎬',options:["They're watching a movie.","They're making a movie."],correct:0},
-   ]},
+  {id:'3.2',icon:'listening',type:'number',
+   instr:'LISTEN TO THE AUDIO, THEN NUMBER THE PICTURES IN THE ORDER THEY ARE DESCRIBED',
+   image:'img/ex-3-2.png',imageAlt:'Six pictures A–F: soccer, cooking, reading, studying, hiking, cinema',
+   audio:'audio/dk-3-2.mp3',
+   audioNote:'🎵 Book audio track. Drop <code>audio/dk-3-2.mp3</code> into the repo to enable playback. The correct order is in the key below.',
+   sample:'Picture <b>C = 1</b>',
+   key:'A = 3 · B = 5 · C = 1 · D = 6 · E = 2 · F = 4',
+   labels:['A','B','C','D','E','F'], answer:[3,5,1,6,2,4]},
   {id:'3.3',icon:'grammar',type:'gap',instr:'FILL IN THE GAPS BY PUTTING THE VERBS IN THE PRESENT CONTINUOUS',
    sample:'Mario <b>is walking</b> (walk) his dog in the park.',
    items:[
@@ -684,19 +710,20 @@ const UNITS=[
     {tokens:['a','am','pair','of','shoes.','I','buying','new'],answer:'I am buying a new pair of shoes.'},
     {tokens:["aren't",'coat','a','You','today.','wearing'],answer:"You aren't wearing a coat today."},
    ]},
-  {id:'3.8',icon:'grammar',type:'scene',adapt:'🖼 adapted',
-   instr:'MARK THE SENTENCE THAT MATCHES EACH PICTURE',
-   sample:'🤠 → <b>Deborah is wearing a hat.</b>',
+  {id:'3.8',icon:'grammar',type:'choice',
+   instr:'LOOK AT THE PICTURES, THEN MARK THE SENTENCE THAT MATCHES EACH ONE',
+   image:'img/ex-3-8.png',imageAlt:'Pictures with two sentences each, numbered 1–9',
+   sample:'Picture (hat) → <b>Deborah is wearing a hat.</b>',
    items:[
-    {pic:'👗',options:['Jenny is wearing a red dress.','Jenny is wearing pants.'],correct:0},
-    {pic:'🚶',options:['Gemma is driving to work.',"Gemma isn't driving to work."],correct:1},
-    {pic:'💃',options:['We are dancing.','We are singing.'],correct:0},
-    {pic:'🍔',options:['Brendan is eating a burger.',"Brendan isn't eating a burger."],correct:0},
-    {pic:'🧥',options:['Sal is wearing a short coat.','Sal is wearing a long coat.'],correct:1},
-    {pic:'🎬',options:['Mo is reading a book.','Mo is watching a movie.'],correct:1},
-    {pic:'👓',options:['Emily is wearing glasses.','Emily is wearing a scarf.'],correct:0},
-    {pic:'🎧',options:['Jo is speaking on her cellphone.','Jo is listening to music.'],correct:1},
-    {pic:'👖',options:['Kate is wearing jeans.','Kate is wearing a skirt.'],correct:0},
+    {options:['Jenny is wearing a red dress.','Jenny is wearing pants.'],correct:1},
+    {options:['Gemma is driving to work.',"Gemma isn't driving to work."],correct:1},
+    {options:['We are dancing.','We are singing.'],correct:1},
+    {options:['Brendan is eating a burger.',"Brendan isn't eating a burger."],correct:0},
+    {options:['Sal is wearing a short coat.','Sal is wearing a long coat.'],correct:1},
+    {options:['Mo is reading a book.','Mo is watching a movie.'],correct:1},
+    {options:['Emily is wearing glasses.','Emily is wearing a scarf.'],correct:0},
+    {options:['Jo is speaking on her cellphone.','Jo is listening to music.'],correct:1},
+    {options:['Kate is wearing jeans.','Kate is wearing a skirt.'],correct:1},
    ]},
  ]},
 
@@ -727,21 +754,25 @@ const UNITS=[
     {before:'Pat is',answers:['driving'],after:'to work.'},
     {before:'Gavin is',answers:['eating'],after:'breakfast.'},
    ]},
-  {id:'4.3',icon:'reading',type:'match',adapt:'🎧→📖 adapted',
-   instr:'READ THE CLUES, THEN MATCH EACH ACTION TO THE RIGHT NAME',
-   intro:'The book plays audio. Read these clues instead: <i>Jack is cooking dinner. Jo is swimming. Alex is riding a horse. Tommy is painting a picture. George is walking in the park with his family. Jean is taking a shower. Ray is working at his desk. Jon is talking on the phone. Isabel is walking in the rain with an umbrella. Louise is reading a book.</i>',
-   right:['Jack','Jo','Alex','Tommy','George','Jean','Ray','Jon','Isabel','Louise'],
+  {id:'4.3',icon:'listening',type:'match',
+   instr:'LISTEN TO THE AUDIO AND MATCH THE ACTIONS (PICTURES) TO THE NAMES',
+   image:'img/ex-4-3.png',imageTall:true,imageAlt:'Ten action icons, numbered 1–10',
+   audio:'audio/dk-4-3.mp3',
+   audioNote:'🎵 Book audio track. Drop <code>audio/dk-4-3.mp3</code> into the repo to enable playback. The answers are in the key below.',
+   sample:'Sample picture → <b>Jack</b>',
+   key:'1 Diane · 2 Tommy · 3 Jo · 4 Alex · 5 Jean · 6 George · 7 Isabel · 8 Ray · 9 Louise · 10 Jon',
+   right:['Alex','Diane','George','Isabel','Jean','Jo','Jon','Louise','Ray','Tommy'],
    pairs:[
-    {left:'🍳 cooking dinner',correct:0},
-    {left:'🏊 swimming',correct:1},
-    {left:'🐴 riding a horse',correct:2},
-    {left:'🎨 painting a picture',correct:3},
-    {left:'🌳 walking in the park',correct:4},
-    {left:'🚿 taking a shower',correct:5},
-    {left:'💻 working at a desk',correct:6},
-    {left:'📞 talking on the phone',correct:7},
-    {left:'☔️ walking in the rain',correct:8},
-    {left:'📚 reading a book',correct:9},
+    {left:'Picture 1',correct:1},
+    {left:'Picture 2',correct:9},
+    {left:'Picture 3',correct:5},
+    {left:'Picture 4',correct:0},
+    {left:'Picture 5',correct:4},
+    {left:'Picture 6',correct:2},
+    {left:'Picture 7',correct:3},
+    {left:'Picture 8',correct:8},
+    {left:'Picture 9',correct:7},
+    {left:'Picture 10',correct:6},
    ]},
   {id:'4.4',icon:'grammar',type:'gap',wide:true,instr:'REWRITE THE SENTENCES, CORRECTING THE ERRORS',
    sample:'Jack and Mike is watching a film. → <b>Jack and Mike are watching a film.</b>',
@@ -785,17 +816,20 @@ const UNITS=[
     {tokens:['you','drinking?','are','What'],answer:'What are you drinking?'},
     {tokens:['are','the','concert?','to','you','getting','How'],answer:'How are you getting to the concert?'},
    ]},
-  {id:'4.7',icon:'reading',type:'match',adapt:'🎧→📖 adapted',
-   instr:'READ THE CLUES, THEN MATCH EACH GADGET TO ITS OWNER',
-   intro:'Read the clues: <i>Betty got a tablet. Robert got a game console. Peter’s mom got a desktop computer. Dan got a smartphone. Claude got an e-reader. Pedro got some earphones.</i>',
-   right:['Betty','Robert','Peter’s mom','Dan','Claude','Pedro'],
+  {id:'4.7',icon:'listening',type:'match',
+   instr:'LISTEN TO THE AUDIO AND MATCH THE PRESENTS (PICTURES) TO THE PEOPLE',
+   image:'img/ex-4-7.png',imageAlt:'Six gadgets: tablet (sample) and presents 1–5',
+   audio:'audio/dk-4-7.mp3',
+   audioNote:'🎵 Book audio track. Drop <code>audio/dk-4-7.mp3</code> into the repo to enable playback. The answers are in the key below.',
+   sample:'Tablet → <b>Betty</b>',
+   key:'1 Claude · 2 Robert · 3 Peter’s mom · 4 Pedro · 5 Dan',
+   right:['Claude','Dan','Peter’s mom','Pedro','Robert'],
    pairs:[
-    {left:'📱 tablet',correct:0},
-    {left:'🎮 game console',correct:1},
-    {left:'🖥 desktop computer',correct:2},
-    {left:'📲 smartphone',correct:3},
-    {left:'📖 e-reader',correct:4},
-    {left:'🎧 earphones',correct:5},
+    {left:'Present 1',correct:0},
+    {left:'Present 2',correct:4},
+    {left:'Present 3',correct:2},
+    {left:'Present 4',correct:3},
+    {left:'Present 5',correct:1},
    ]},
   {id:'4.8',icon:'speaking',type:'speak',instr:'ANSWER THE QUESTIONS OUT LOUD, THEN WRITE THE ANSWERS',
    sample:'What is Louise wearing? → <b>Louise is wearing a red dress.</b>',
@@ -841,26 +875,33 @@ const UNITS=[
     {before:'You',options:["don't like","aren't liking"],correct:0,after:'snakes.'},
     {before:'Dom',options:['goes','is going'],correct:1,after:'to school now.'},
    ]},
-  {id:'5.4',icon:'grammar',type:'gap',adapt:'🎧→📖 adapted',
-   instr:'FILL IN THE GAPS (PRESENT SIMPLE) — Jane talks about her life in Los Angeles and her family',
+  {id:'5.4',icon:'listening',type:'gap',
+   instr:'LISTEN TO THE AUDIO AND FILL IN THE GAPS — Jane talks about her life in Los Angeles and her family',
+   intro:'Jane’s <b>habits</b> use the present simple; what her family is doing <b>right now</b> uses the present continuous.',
+   audio:'audio/dk-5-4.mp3',
+   audioNote:'🎵 Book audio track. Drop <code>audio/dk-5-4.mp3</code> into the repo to enable playback. The answers are in the key below.',
    sample:'Jane <b>lives</b> in Los Angeles.',
+   key:'works · really likes · goes · has · is playing · is watching · is listening',
    items:[
     {before:'Jane',answers:['works','teaches'],after:'at the school near her apartment.'},
     {before:'Jane really',answers:['likes','loves','enjoys'],after:'teaching.'},
     {before:'Jane',answers:['goes'],after:'to restaurants on the weekend.'},
     {before:'Jane',answers:['has'],after:'three children.'},
-    {before:'Ben',answers:['plays'],after:'soccer with his friends.'},
-    {before:'Silvia',answers:['watches'],after:'a film at the movie theater.'},
-    {before:'Mike',answers:['listens'],after:'to music in his room.'},
+    {before:'Ben',answers:['is playing'],after:'soccer with his friends.'},
+    {before:'Silvia',answers:['is watching'],after:'a film at the movie theater.'},
+    {before:'Mike',answers:['is listening'],after:'to music in his room.'},
    ]},
-  {id:'5.5',icon:'vocab',type:'scene',adapt:'🖼 adapted',
-   instr:'MATCH EACH PICTURE TO THE CORRECT SENTENCE',
-   sample:'🛋 → <b>He’s watching TV.</b>',
-   items:[
-    {pic:'👩‍👧‍👦',options:['Samantha has three children.','She hates snakes.'],correct:0},
-    {pic:'🏃🏫',options:["They're running to school.","She's listening to music."],correct:0},
-    {pic:'🐍😱',options:['She hates snakes.','He’s watching TV.'],correct:0},
-    {pic:'🎧',options:["She's listening to music.","They're running to school."],correct:0},
+  {id:'5.5',icon:'vocab',type:'match',
+   instr:'MATCH THE PICTURES TO THE CORRECT SENTENCES',
+   image:'img/ex-5-5.png',imageAlt:'A sample picture and pictures 1–4',
+   sample:'Sample picture → <b>He’s watching TV.</b>',
+   key:'1 Samantha has three children. · 2 They’re running to school. · 3 She hates snakes. · 4 She’s listening to music.',
+   right:['She hates snakes.','She’s listening to music.','Samantha has three children.','They’re running to school.'],
+   pairs:[
+    {left:'Picture 1',correct:2},
+    {left:'Picture 2',correct:3},
+    {left:'Picture 3',correct:0},
+    {left:'Picture 4',correct:1},
    ]},
  ]},
 ];
